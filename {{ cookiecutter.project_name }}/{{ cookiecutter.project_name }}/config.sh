@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT_NAME=blink
+PROJECT_NAME={{ cookiecutter.project_name }}
 
 ###########################################
 # for tcl flow
