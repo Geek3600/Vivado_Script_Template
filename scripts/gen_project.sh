@@ -476,6 +476,11 @@ function vcs_gen_verdi() {
     eval "echo \"${template_verdi}\"" > ${VCS_VERDI_SCRIPT}
     chmod +x ${VCS_VERDI_SCRIPT}
 }
+function vcs_gen_all(){
+    template_all="./compile.sh\n./elaborate.sh\n./simulate.sh\n./verdi.sh"
+    echo -e ${template_all} > ${VCS_ALL_SCRIPT}
+    chmod +x ${VCS_ALL_SCRIPT}
+}
 
 function vcs_main() {
     if [[ -n "${VIVADO_SIM_FILELIST}" ]]; then
@@ -490,6 +495,7 @@ function vcs_main() {
         vcs_gen_elaborate
         vcs_gen_simulate
         vcs_gen_verdi
+        vcs_gen_all
     else
         echo -e ${COLOR_INFO}"[info] vcs: no simulation files. stop to generate vcs"${COLOR_RESET}
     fi
@@ -591,12 +597,15 @@ function iverilog_main() {
     fi
 }
 
+# $#是脚本的参数个数
 if [[ $# -ge 1 ]]; then
-    for i in "$@"; do
+    # $@是脚本的所有参数，遍历
+    for i in "$@"; do 
         echo -e ${COLOR_INFO}"[info] generator: read ${i}"${COLOR_RESET}
         SRC_DIR=$(dirname $(readlink -f ${i}))
         source ${i}
         source ./template_config.sh
+        cp ${i} ${PROJECT_DIR}/config_copy.sh        
         vivado_main
         if [[ ${VCS_ENABLE} && ${VCS_ENABLE} -ne 0 ]]; then
             vcs_main
