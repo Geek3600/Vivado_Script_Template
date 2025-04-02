@@ -63,13 +63,13 @@ VCS_TIMESCALE="1ns/1ps"
 # 2. POST_SYNTH
 VCS_SIM_MODE=RTL
 
-VCS_SIM_TOP_MODULE=tb_blink
-VCS_FSDB_FILE=tb_blink.fsdb
+VCS_SIM_TOP_MODULE=tb_${VIVADO_TOP_MODULES}
+VCS_FSDB_FILE=tb_${VIVADO_TOP_MODULES}.fsdb
 
 ###########################################
 # for iverilog flow
 ###########################################
 IVERILOG_ENABLE=1
 
-IVERILOG_SIM_TOP_MODULE=tb_blink
-IVERILOG_VCD_FILE=tb_blink.vcd
+IVERILOG_SIM_TOP_MODULE=tb_${VIVADO_TOP_MODULES}
+IVERILOG_VCD_FILE=tb_${VIVADO_TOP_MODULES}.vcd
