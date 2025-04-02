@@ -33,6 +33,7 @@ The `scripts` folder contains project generation scripts and some templates. The
 ### Configuring the Project
 
 Modify `config.sh` according to your project, referring to the internal guides. All paths are relative to the `config.sh` path.
+Remember set your `VCS_COMPILE_LIB_DIR` correctly; otherwise, your compilation will result in errors.
 
 ### Generating Scripts
 
